@@ -105,6 +105,7 @@ public class NerdLauncherFragment extends Fragment {
             nameTextView.setOnClickListener(this);
         }
 
+
         @Override
         public void onClick(View view) {
             //get package name of desired clicked app and its class name
