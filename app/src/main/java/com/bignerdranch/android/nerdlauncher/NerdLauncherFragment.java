@@ -57,15 +57,15 @@ public class NerdLauncherFragment extends Fragment {
     }
 
     public void setupAdapter(){
-        //start an intent loocking for apps which have a MAIN ACTIVITY/INTNET
+        //start an intent looking for apps which have a MAIN ACTIVITY/INTenT
         Intent startupIntent = new Intent(Intent.ACTION_MAIN);
         startupIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-        //go through all the packages and find the apps wchi can be launched and add them to a list
+        //go through all the packages and find the apps which can be launched and add them to a list
         PackageManager pm = getActivity().getPackageManager();
         List<ResolveInfo> activities = pm.queryIntentActivities(startupIntent, 0);
 
-        //sort the objects returned by the list alphabeticaly
+        //sort the objects returned by the list alphabetical order
         Collections.sort(activities, new Comparator<ResolveInfo>() {
             @Override
             public int compare(ResolveInfo a, ResolveInfo b) {
@@ -96,6 +96,7 @@ public class NerdLauncherFragment extends Fragment {
             super(itemView);
             nameTextView = (TextView) itemView.findViewById(R.id.appName);
             appIcon = itemView.findViewById(R.id.appIcon);
+            itemView.setOnClickListener(this);
         }
 
         public void bindActivity(ResolveInfo resolveInfo){
@@ -107,7 +108,7 @@ public class NerdLauncherFragment extends Fragment {
             String appName = resolveInfo.loadLabel(pm).toString();
             //set the text view text with the app's name
             nameTextView.setText(appName);
-            nameTextView.setOnClickListener(this);
+      //      nameTextView.setOnClickListener(this);
 
             //app icon
             Drawable appImage = resolveInfo.loadIcon(pm);
